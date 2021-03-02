@@ -30,6 +30,7 @@ import {
   Location,
   parseEntityName,
 } from '@backstage/catalog-model';
+import { EntitySpec } from '@backstage/plugin-catalog-graphql/src/graphql/types';
 import Knex from 'knex';
 import lodash from 'lodash';
 import type { Logger } from 'winston';
@@ -94,6 +95,14 @@ export class CommonDatabase implements Database {
       throw e;
     }
   }
+
+  async addEntityRefreshState(
+    txOpaque: Transaction,
+    request: {
+      entity: Entity;
+      nextRefresh: string; // TODO dateTime/ Date?
+    },
+  ) {}
 
   async addEntities(
     txOpaque: Transaction,
