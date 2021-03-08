@@ -15,14 +15,14 @@
  */
 
 import { IconComponent } from '../icons';
-import { getGlobalSingleton } from '../lib/globalObject';
+import { getOrCreateGlobalSingleton } from '../lib/globalObject';
 
 export type AnyParams = { [param in string]: string } | undefined;
 export type ParamKeys<Params extends AnyParams> = keyof Params extends never
   ? []
   : (keyof Params)[];
 
-export const routeRefType: unique symbol = getGlobalSingleton<any>(
+export const routeRefType: unique symbol = getOrCreateGlobalSingleton<any>(
   'route-ref-type',
   () => Symbol('route-ref-type'),
 );
